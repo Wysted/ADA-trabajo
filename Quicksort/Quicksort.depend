@@ -1,7 +1,0 @@
-# depslib dependency file v1.0
-1667281243 source:c:\users\vladi\documents\codigos\trabajo analisis\quicksort\quicksort.c
-	<stdio.h>
-	<stdlib.h>
-	<time.h>
-	<unistd.h>
-
