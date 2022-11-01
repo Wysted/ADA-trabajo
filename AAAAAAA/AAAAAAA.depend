@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1667272034 source:c:\users\vladi\documents\codigos\trabajo analisis\aaaaaaa\merge_short.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+

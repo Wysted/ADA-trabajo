@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1667273526 source:c:\users\vladi\documents\codigos\trabajo analisis\probando\mergeshort.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+
