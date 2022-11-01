@@ -80,7 +80,7 @@ int particion(int arreglo[], int izquierda, int derecha) {
     Si la izquierda es mayor o igual que la derecha significa que no
     necesitamos hacer ningún intercambio
     de variables, pues los elementos ya están en orden (al menos en esta
-    iteración)
+    iteración)a
     */
     if (izquierda >= derecha) {
       // Indicar "en dónde nos quedamos" para poder dividir el arreglo de nuevo
