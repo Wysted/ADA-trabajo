@@ -1,6 +1,5 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include<stdbool.h>
 #include<time.h>
 
 #define MAX 10000000
@@ -9,6 +8,7 @@
 void MergeArray(int *a,int begin,int mid,int end,int *temp);
 void imprimir(int vec[], int n);
 void MergeSort(int *a,int begin,int end,int *temp);
+
 int main(){
     FILE * fp = fopen("archivo_generado.txt", "r");
     int * array = (int*)malloc(sizeof(int) * MAX);
@@ -43,11 +43,8 @@ int main(){
         fin = clock();
     }
 
-
-
-
-    time_spent += ((double)(fin - inicio) / CLOCKS_PER_SEC);
-    imprimir(array,n);
+    time_spent += ((double)(fin - inicio) / CLOCKS_PER_SEC );//Calcula en segundos, si quiere calcular en mili  CLOCKS_PER_SEC * 1000
+    //imprimir(array,n); imprime el array ordenado con la cantidad de datos
 
     printf("\nSe demoro un total de %f",time_spent);
 
@@ -62,14 +59,12 @@ void imprimir(int vec[], int n){
         printf("\n%d | %d ",i+1,vec[i]);
     }
 }
-void MergeArray(int *a,int begin,int mid,int end,int *temp)
-{
+void MergeArray(int *a,int begin,int mid,int end,int *temp){
     int i = begin,j = mid;
     int m = mid + 1,n = end;
     int k = 0;
 
-    while(i <= j && m <= n)
-    {
+    while(i <= j && m <= n){
         if(a[i] <= a[m])
         {
             temp[k++] = a[i++];
@@ -96,14 +91,10 @@ void MergeArray(int *a,int begin,int mid,int end,int *temp)
     }
 }
 
-void MergeSort(int *a,int begin,int end,int *temp)
-{
+void MergeSort(int *a,int begin,int end,int *temp){
     if(begin < end)
     {
-
         int mid = (begin + end) / 2;
-
-
         MergeSort(a,begin,mid,temp);
         MergeSort(a,mid + 1,end,temp);
         MergeArray(a,begin,mid,end,temp);
