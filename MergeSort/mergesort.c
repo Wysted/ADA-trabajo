@@ -46,7 +46,7 @@ int main(){
 
     fclose(fp);
     free(array);
-
+    free(array_temp);
     return 0;
 }
 
