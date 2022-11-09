@@ -1,11 +1,12 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
-#include <unistd.h>
 
 #define MAX 10000000
 
-void intercambiar(int *a, int *b);
+void cargarArray(FILE *fp,int arr[],int n);
+void printArray(int arr[],int size);
+void swap(int *a, int *b);
 void quicksort(int arreglo[], int izquierda, int derecha);
 int particion(int arreglo[], int izquierda, int derecha);
 
@@ -13,32 +14,27 @@ int main(){
     FILE* fp = fopen("archivo_generado.txt", "r");
     int * array = (int*)malloc(sizeof(int) * MAX);
     int numero,i,n = 0;
-
+    clock_t inicio,final;
     double time_spent = 0.0;
 
 
 
-    if (!fp) {
-        printf("Error en el archivo");
-        return 1;
-    }
-    while (feof(fp) == 0) {
-        fscanf(fp, "%d", &numero);
-        array[i] = numero;
-        i++;
-    }
+    cargarArray(fp,array,MAX);
 
     printf("Digite el n: ");scanf("%d",&n);
-    clock_t begin = clock();
     if(n != MAX){
+    inicio = clock();
         quicksort(array, 0, n);
+    final = clock();
     }else{
+    inicio = clock();
         quicksort(array, 0, MAX-1);
+    final = clock();
     }
-    clock_t end = clock();
 
-    time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
-    printf("Se demoro un total de %f",time_spent);
+    time_spent += ((double)(final - inicio) / CLOCKS_PER_SEC);
+    printArray(array,n);
+    printf("Se demoro un total de %lf",time_spent);
 
 
     fclose(fp);
@@ -47,7 +43,27 @@ int main(){
     return 0;
 }
 
-void intercambiar(int *a, int *b) {
+void cargarArray(FILE *fp,int arr[],int n){
+    if(!fp){
+		printf("Error en el archivo");
+		return;
+	}
+    int i = 0;
+    while(feof(fp) == 0 && i != n){
+		fscanf(fp,"%d",&arr[i]);
+		i++;
+	}
+}
+
+void printArray(int arr[],int size){
+	int i;
+	for(i=0;i<size;i++){
+		printf("\n%d / %d",i+1,arr[i]);
+	}
+}
+
+
+void swap(int *a, int *b) {
   int temporal = *a;
   *a = *b;
   *b = temporal;
@@ -93,13 +109,13 @@ int particion(int arreglo[], int izquierda, int derecha) {
       significa que se detuvieron porque encontraron un valor que no estaba
       en orden, así que lo intercambiamos
       */
-      intercambiar(&arreglo[izquierda], &arreglo[derecha]);
+      swap(&arreglo[izquierda], &arreglo[derecha]);
       /*
       Ya intercambiamos, pero seguimos avanzando los índices
       */
       izquierda++;
       derecha--;
     }
-    // El while se repite hasta que izquierda >= derecha
+
   }
 }

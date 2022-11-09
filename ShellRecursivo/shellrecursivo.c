@@ -5,8 +5,8 @@
 #include<time.h>
 
 #define MAX 10000000
-
-void imprimir(int vec[], int n);
+void cargarArray(FILE *fp,int arr[],int n);
+void printArray(int arr[],int size);
 void Shell(int vec[], int n, int salto);
 
 
@@ -18,16 +18,7 @@ int main(){
     double time_spent = 0.0;
     clock_t inicio,fin;
 
-
-    if (!fp) {
-        printf("Error en el archivo");
-        return 1;
-    }
-    while (feof(fp) == 0) {
-        fscanf(fp, "%d", &numero);
-        array[i] = numero;
-        i++;
-    }
+    cargarArray(fp,array,MAX);
 
     printf("Digite el n: ");scanf("%d",&n);
     int salto = n/2;
@@ -36,10 +27,10 @@ int main(){
     Shell(array,n,salto);
     fin = clock();
 
-    time_spent += ((double)(fin - inicio) / CLOCKS_PER_SEC) * 1000;
-    imprimir(array,n);
+    time_spent += ((double)(fin - inicio) / CLOCKS_PER_SEC);
+    printArray(array,n);
 
-    printf("\nSe demoro un total de %f",time_spent);
+    printf("\nSe demoro un total de %lf",time_spent);
 
     fclose(fp);
     free(array);
@@ -47,11 +38,23 @@ int main(){
     return 0;
 }
 
+void cargarArray(FILE *fp,int arr[],int n){
+    if(!fp){
+		printf("Error en el archivo");
+		return;
+	}
+    int i = 0;
+    while(feof(fp) == 0 && i != n){
+		fscanf(fp,"%d",&arr[i]);
+		i++;
+	}
+}
 
-void imprimir(int vec[], int n){
-    for(int i=0; i<n; i++){
-        printf("\n %d | %d ",i+1,vec[i]);
-    }
+void printArray(int arr[],int size){
+	int i;
+	for(i=0;i<size;i++){
+		printf("\n%d / %d",(i-size)*-1,arr[i]);
+	}
 }
 
 void Shell(int vec[], int n, int salto){
@@ -60,10 +63,10 @@ void Shell(int vec[], int n, int salto){
 
     bool band=true;
 
-
     while(band){
         band=false;
-        for(int i=0; i+salto < n; i++){
+        int i;
+        for(i=0; i+salto < n; i++){
 
             if(vec[i]<vec[salto+i]){
                 aux=vec[i];
@@ -73,10 +76,7 @@ void Shell(int vec[], int n, int salto){
 
             }
         }
-
-
     }
-
     salto=salto/2;
         if(salto!=0)
             Shell(vec, n, salto);
