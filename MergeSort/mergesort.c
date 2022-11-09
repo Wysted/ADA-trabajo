@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
+
 #define MAX 10000000
 
 
@@ -37,8 +38,10 @@ int main(){
     }
 
     time_spent += ((double)(fin - inicio) / CLOCKS_PER_SEC );//Calcula en segundos, si quiere calcular en mili  CLOCKS_PER_SEC * 1000
+
     //printArray(array,n)
     printf("\nSe demoro un total de %lf",time_spent);
+
 
 
     fclose(fp);
@@ -65,6 +68,7 @@ void printArray(int arr[],int size){
 		printf("\n%d / %d",i+1,arr[i]);
 	}
 }
+
 
 void MergeArray(int *a,int begin,int mid,int end,int *temp){
     int i = begin,j = mid;
@@ -107,5 +111,3 @@ void MergeSort(int *a,int begin,int end,int *temp){
         MergeArray(a,begin,mid,end,temp);
     }
 }
-
-
