@@ -5,14 +5,9 @@
 #define MAX 10000000
 // Utility function to swap values at two indices in an array
 void swap (int i, int j, int *arr);
-
 void bubbleSort (int size, int *numbers);
-
 void cargarArray(FILE *fp,int arr[],int n);
-
 void printArray(int arr[],int size);
-
-
 
 int main(){
     
@@ -31,7 +26,7 @@ int main(){
     fin = clock();
     
     time_spent += ((double)(fin - inicio) / CLOCKS_PER_SEC);
-    printArray(arr,n);
+    //printArray(arr,n);
     printf("\nSe demoro un total de %lf",time_spent);
 
 

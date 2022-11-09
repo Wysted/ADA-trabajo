@@ -33,7 +33,7 @@ int main(){
     }
 
     time_spent += ((double)(final - inicio) / CLOCKS_PER_SEC);
-    printArray(array,n);
+    //printArray(array,n);
     printf("Se demoro un total de %lf",time_spent);
 
 

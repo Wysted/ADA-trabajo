@@ -28,7 +28,7 @@ int main(){
     fin = clock();
 
     time_spent += ((double)(fin - inicio) / CLOCKS_PER_SEC);
-    printArray(array,n);
+    //printArray(array,n);
 
     printf("\nSe demoro un total de %lf",time_spent);
 
