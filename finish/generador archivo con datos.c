@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <conio.h>
 
-#define MAX 100000
+#define MAX 10000000
 
 int main() {
 
